@@ -1,9 +1,14 @@
-class Shape{
+class Shape<T>{
   constructor() { }
   public draw(): void { }
 }
 
-class Circle extends Shape {
+interface Position2D {
+  x: number;
+  y: number;
+}
+
+class Circle extends Shape<Position2D> {
   constructor() {
     super();
   }
@@ -12,7 +17,7 @@ class Circle extends Shape {
   public roll(): void {}
 }
 
-class Rectangle extends Shape {
+class Rectangle extends Shape<Position2D> {
   constructor() {
     super();
   }
@@ -28,7 +33,7 @@ enum ShapeType {
 }
 
 class ShapeFactory {
-  public static getShape<T>(shapeType: ShapeType): Shape {
+  public static getShape(shapeType: ShapeType): Shape<Position2D> {
     switch(shapeType) {
       case ShapeType.CIRCLE: 
         return new Circle();
